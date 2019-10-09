@@ -15,3 +15,26 @@ form {
 input {
     width: 30%;
 }
+.videoContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.video > a {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+h3 {
+    padding-left: 10px;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+}
+
+footer > .buttons {
+    margin: auto;
+}
