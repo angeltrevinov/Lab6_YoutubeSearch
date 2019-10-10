@@ -1,20 +1,32 @@
-let previousToken;
-let nextToken;
+let previousToken = '';
+let nextToken = '';
+let strThingToSearch = '';
 
 //----------------------------------------------------------
 $('#SearchYoutube').submit( function (event) {
     event.preventDefault();
-    let strThingToSearch = event.currentTarget['0'].value;
+    strThingToSearch = event.currentTarget['0'].value;
+
+    _deletePreviousData();
+    _addSpinner();
     _askForSearch(strThingToSearch, '');
 });
 
 //----------------------------------------------------------
 $('#Next').click(function (event) {
-   console.log('next');
+  if(nextToken) {
+      _deletePreviousData();
+      _addSpinner();
+      _askForSearch(strThingToSearch, nextToken);
+  }
 });
 
 $('#Prev').click(function (event) {
-    console.log('previous');
+    if(previousToken) {
+        _deletePreviousData();
+        _addSpinner();
+        _askForSearch(strThingToSearch, previousToken);
+    }
 });
 
 //----------------------------------------------------------
@@ -64,4 +76,14 @@ function _askForSearch(strTermToSearch, pageToken) {
 //----------------------------------------------------------
 function _deletePreviousData() {
     $('.videoContainer').empty();
+}
+
+//----------------------------------------------------------
+function _addSpinner() {
+
+    $('.videoContainer').append(
+        '<div class="containerSpinner">' +
+        '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>' +
+        '</div>'
+    );
 }
